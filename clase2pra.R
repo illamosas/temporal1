@@ -2,21 +2,25 @@
 
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
-x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+x1 <- rnorm(10000, 4,3)
+plot(density(x1), col="green")
 
-plot(ecdf(x1))
+plot(ecdf(x1), col="red")
 
 x2 <- rgamma(10000,2,1.5)
 
-plot(density(x2))
-plot(ecdf(x2))
+plot(density(x2), col="yellow")
+plot(ecdf(x2), col="purple")
 
-# tomar muestras de la poblacion
+# tomar muestras aleatorias de la poblacion
+#seleccionando los valores de 80 en 80
 s <- rep(0,500)
 for(i in 1:500) {
-  s[i] <- mean(sample(x2, 100))
+  s[i] <- round(mean(sample(x2, 80)),2)
+           
 }
+s
+
 
 plot(density(s))
 
@@ -27,18 +31,24 @@ rm(list=ls())
 
 Sigma <- matrix(c(10,3,3,2),2,2)
 
+
 X <- mvrnorm(n=1000, c(4,6), Sigma)
-plot(X[,1],X[,2])
+plot(X[,1],X[,2], main = "Distribución Normal de Datos multivariables", xlab= "esta es x", ylab= "esta es la y", col="blue")
 
 # modelo,(como modelador de los datos, conoces epsilon)
 
 beta <- c(4,-2, 9, -3)
 c <- 15
-epsilon = rnorm(1000,0,4)
+epsilon = round(rnorm(1000,0,4),3)
+#columna 1 al cuadrado
 cuadrado <- X[,1]^2
+mean(cuadrado)
+
+#multiplicación de x*y
 interaccion <- X[,1]*X[,2]
 
 X <- cbind(X, cuadrado, interaccion)
+
 y <- c + X%*%beta + epsilon
 fm1 <- y ~  X 
 fm2 <- y ~  X[,1]
