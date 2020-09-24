@@ -3,22 +3,24 @@
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
 x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+plot(density(x1),col="brown")
 
-plot(ecdf(x1))
+plot(ecdf(x1),col="purple")
 
-x2 <- rgamma(10000,2,1.5)
+x2 <- round(rgamma(10000,2,1.5),3)
+x2
 
-plot(density(x2))
-plot(ecdf(x2))
+plot(density(x2),col="green")
+plot(ecdf(x2),col="yellow")
 
-# tomar muestras de la poblacion
+# tomar muestras de la poblacion de 120 valores
 s <- rep(0,500)
 for(i in 1:500) {
-  s[i] <- mean(sample(x2, 100))
+  s[i] <- mean(sample(x2, 120))
 }
+print(s)
 
-plot(density(s))
+plot(density(s),col="blue")
 
 # regresión, modelo
 # instalar paquete MASS (install.packages("MASS"))
@@ -27,22 +29,30 @@ rm(list=ls())
 
 Sigma <- matrix(c(10,3,3,2),2,2)
 
-X <- mvrnorm(n=1000, c(4,6), Sigma)
-plot(X[,1],X[,2])
+
+# redondera los valores a tres lugares despues de la coma.
+X <- round(mvrnorm(n=1000, c(4,6), Sigma),3)
+X
+plot(X[,1],X[,2],col="Red")
 
 # modelo,(como modelador de los datos, conoces epsilon)
 
 beta <- c(4,-2, 9, -3)
 c <- 15
-epsilon = rnorm(1000,0,4)
+epsilon =round(rnorm(1000,0,4),3)
+epsilon 
 cuadrado <- X[,1]^2
+cuadrado
 interaccion <- X[,1]*X[,2]
-
+interaccion 
+# cbind- convinaci�n de valores por columnas 
 X <- cbind(X, cuadrado, interaccion)
+X
 y <- c + X%*%beta + epsilon
+
 fm1 <- y ~  X 
 fm2 <- y ~  X[,1]
-plot(y, X[,1])
+plot(y, X[,1], col="blue")
 
 reg1 <- lm(fm1)
 summary(reg1)
@@ -62,7 +72,7 @@ hist(epsilon)
 
 y <- c + X%*%beta + epsilon
 
-# asumamos que conocemos todos los regresores... cual sería el problema?
+# asumamos que conocemos todos los regresores... cual ser�?a el problema?
 
 reg1 <- lm(fm1)
 summary(reg1)
@@ -149,7 +159,7 @@ sqrt(diag(vc_reg3))  # nuevos errores estándar... se deben sustituir
 
 # Inclusión de variables irrelevantes
 # Siempre mejoran la R2, pero no la R2 ajustada
-# la teoría normalmente les dirá cuando es irrelevante
+# la teor�?a normalmente les dirá cuando es irrelevante
 
 # Forma funcional incorrecta
 # Ya lo hicimos, al exluir interacción y cuadraticas del modelo al inicio.
@@ -166,6 +176,6 @@ sqrt(diag(vc_reg3))  # nuevos errores estándar... se deben sustituir
 # Consistencia de datos
 # Uno de los criterios mas importantes para estimar una ecuación, es que
 # dichos parámetros deben tener relevancia para datos que no se usaron en la estimación.
-# Ir a pizarrón para explicación empírica.
+# Ir a pizarrón para explicación emp�?rica.
 
 
