@@ -3,21 +3,29 @@
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
 x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+#una distribucion normal que 10000
+#aleatorios  con mean=3 y desviaciones estandar 3
+#redondeados a 3 lugares despues de la coma.
+x1<- round(rnorm(10000,4,3),3)
+x1
 
 plot(ecdf(x1))
 
 x2 <- rgamma(10000,2,1.5)
+#redondeados a 3 lugares despues de la coma.
+x2<- round(rnorm(10000,4,3),3)
+x2
 
 plot(density(x2))
 plot(ecdf(x2))
 
-# tomar muestras de la poblacion
+# tomar muestras aleatorias de la poblacion
+#redondeando a 3 lugares despues de la coma 
 s <- rep(0,500)
 for(i in 1:500) {
-  s[i] <- mean(sample(x2, 100))
+  s[i] <- round(mean(sample(x2, 100)),3)
 }
-
+s
 plot(density(s))
 
 # regresión, modelo
@@ -26,30 +34,45 @@ library(MASS)
 rm(list=ls())
 
 Sigma <- matrix(c(10,3,3,2),2,2)
+Sigma
+X <- round(mvrnorm(n=1000, c(4,6), Sigma),3)
+X
+plot(X[,1],X[,2],main = 'Distribucion normal de datos multivariados')
 
-X <- mvrnorm(n=1000, c(4,6), Sigma)
-plot(X[,1],X[,2])
 
 # modelo,(como modelador de los datos, conoces epsilon)
 
 beta <- c(4,-2, 9, -3)
+beta
 c <- 15
 epsilon = rnorm(1000,0,4)
+epsilon
 cuadrado <- X[,1]^2
-interaccion <- X[,1]*X[,2]
+cuadrado
+mediacuadradox<-mean(cuadrado)
+mediacuadradox
 
+interaccion <- X[,1]*X[,2]
+# cbind une combina todos los datos en una misma columna
 X <- cbind(X, cuadrado, interaccion)
+#para q el producto matricial tenga sentido 
+#guardo X como una matriz de m filas x4columnas
+X<-matrix(X,1000,4)
+X
 y <- c + X%*%beta + epsilon
+y
 fm1 <- y ~  X 
 fm2 <- y ~  X[,1]
 plot(y, X[,1])
 
+#REGRESION DE Y VS 4 COLUMNAS
 reg1 <- lm(fm1)
 summary(reg1)
 
+#REGRESION DE Y VS PRIMERA COLUMNAS
 reg2 <- lm(fm2)
 summary(reg2)
-
+plot(reg2)
 
 # Problemas con epsilon (en las notas, es u)
 
