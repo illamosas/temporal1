@@ -97,6 +97,9 @@ summary(reg2_normal)
 e <- reg2_normal$residuals
 hist(e)
 jb.norm.test(e, nrepl=1000)
+#Al realizar la prueba de Jarque Bera se comprueba la asimetria y curtosis de una muestra de datos 
+#normalmente esta prueba es usada para probar hipotesis nulas donde los datos pertenecen a una distribucion normal
+#Y en este intento la normalidad es aceptada 
 
 # todo excelente!, ahora violemos normalidad
 
