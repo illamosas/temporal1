@@ -3,7 +3,9 @@
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
 x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+plot(density(x1),
+     main="population", 
+     xlab="outcomes")
 
 plot(ecdf(x1))
 
@@ -18,7 +20,9 @@ for(i in 1:500) {
   s[i] <- mean(sample(x2, 100))
 }
 
-plot(density(s))
+plot(density(s),
+     main="population density", 
+     xlab="outcomes")
 
 # regresión, modelo
 # instalar paquete MASS (install.packages("MASS"))
