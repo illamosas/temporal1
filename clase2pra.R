@@ -31,7 +31,7 @@ X <- mvrnorm(n=1000, c(4,6), Sigma)
 plot(X[,1],X[,2])
 
 # modelo,(como modelador de los datos, conoces epsilon)
-
+#como dato a considerar se sabe que la media de epsilon es 0
 beta <- c(4,-2, 9, -3)
 c <- 15
 epsilon = rnorm(1000,0,4)
@@ -45,8 +45,13 @@ fm1 <- y ~  X
 fm2 <- y ~  X[,1]
 plot(y, X[,1])
 
+
 reg1 <- lm(fm1)
 summary(reg1)
+#se puede aplicar un plot en las dos regresiones para 
+#observar de mejor manera la dispersión de datos 
+plot(reg1)
 
 reg2 <- lm(fm2)
 summary(reg2)
+plot(reg2)
