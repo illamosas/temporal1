@@ -18,13 +18,22 @@
 
 \begin{document}
 
+\date{\today}
 \title{Phys3201 Template GT}
 \author{A. Partner, B. Partner, and C. Partner}
-\date{\today}
+
+
 \maketitle
 
 \begin{abstract}
-In this experiment we studied pendulum motion in a non-uniformly accelerating reference frame. \textbf{Special notes:} Prof Goldman specifically requested to not have ``100" "sig" figs, put font on figure axes in readable size, and don't put grids on plots!
+In this experiment we studied pendulum motion in a non-uniformly 
+accelerating reference frame. \textbf{Special notes:} Prof Goldman 
+specifically requested to not have ``100" "sig" figs, put font on 
+figure axes in readable size, and don't put grids on plots! Y mi
+entendimiento de latex es casi del 0\% despues de esta linea.
+
+Seguir escribiendo. $$y_{i,t}= \alpha + \beta x_{i,t} + \varepsilon_{i,t}$$
+$$\sum_i^j x_i$$
 \end{abstract}
 
 
@@ -32,23 +41,38 @@ In this experiment we studied pendulum motion in a non-uniformly accelerating re
 
 Motivate why you chose the problem that you did. Why is it interesting? 
 
+\subsection{subseccion de la clase}
+
 \blindtext %delete this line
 
 
 \section{Background}
 
-Give a brief summary of the physical theory, include any equations necessary, and cite any references you want to include. Here is how you insert an equation. According to
-references~\cite{melissinos, Cyr, Wiki} the dependence of interest is given
+Give a brief summary of the physical theory, include any equations necessary, and cite any references you want to include. Here is how you insert an equation. According to references ~\cite{melissinos, Cyr, Wiki} the dependence of interest is given
 by
+
+
 \begin{gather*}
    \mathcal{L} =  \frac{1}{2} m \ell^2 ( \dot{\theta}+\dot{\phi}_0)^2 - m g_e(t) \ell \cos(\theta)\\
    \\
    m\ell^2 (\ddot{\theta} + \ddot{\phi}_0) = mg_e\ell\sin(\theta)\\
 \end{gather*}
+
+
 \begin{equation}
-   \ddot{\phi}(t) = -\frac{g_e(t)}{\ell} \sin\left(\phi(t)-\phi_0(t)\right)
+   \dot{\phi}(t) = -\frac{g_e(t)}{\ell} \sin\left(\phi(t)-\phi_0(t)\right)
    \label{Eq:equation1} %the label lets you refer to the equation later
 \end{equation}
+
+\begin{equation}
+   y_{i,t} = \alpha + \beta X_{i,t} + \varepsilon_{i,t}
+   \label{Eq:irving} %the label lets you refer to the equation later
+\end{equation}
+
+Este es un texto de prueba, aqui voy a referenciar las ecuaciones. Por
+ejemplo, en la ecuación \ref{Eq:equation1} podemos ver bla bla bla.
+En otra ecuación, la numero \ref{Eq:irving} podemos ver lo contrario...
+
 
 \begin{figure}[!h]
     \centering
