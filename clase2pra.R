@@ -3,22 +3,25 @@
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
 x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+plot(density(x1),col="red")
 
-plot(ecdf(x1))
+plot(ecdf(x1),col="blue")
 
-x2 <- rgamma(10000,2,1.5)
+x2 <-rgamma(10000,2,1.5)
 
-plot(density(x2))
-plot(ecdf(x2))
+plot(density(x2),col="green")
+plot(ecdf(x2), col="purple")
 
 # tomar muestras de la poblacion
+#seleccionando los valores de 50 en 50 
 s <- rep(0,500)
 for(i in 1:500) {
-  s[i] <- mean(sample(x2, 100))
+  s[i] <- round(mean(sample(x2, 50)),3)
 }
+s
 
-plot(density(s))
+
+plot(density(s),col="yellow")
 
 # regresi贸n, modelo
 # instalar paquete MASS (install.packages("MASS"))
@@ -28,7 +31,7 @@ rm(list=ls())
 Sigma <- matrix(c(10,3,3,2),2,2)
 
 X <- mvrnorm(n=1000, c(4,6), Sigma)
-plot(X[,1],X[,2])
+plot(X[,1],X[,2], main = "Distribuci髇 Normal de Datos multivariables", xlab= "esta es x", ylab= "esta es la y", col="pink")
 
 # modelo,(como modelador de los datos, conoces epsilon)
 
@@ -167,5 +170,17 @@ sqrt(diag(vc_reg3))  # nuevos errores est谩ndar... se deben sustituir
 # Uno de los criterios mas importantes para estimar una ecuaci贸n, es que
 # dichos par谩metros deben tener relevancia para datos que no se usaron en la estimaci贸n.
 # Ir a pizarr贸n para explicaci贸n emp铆rica.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
