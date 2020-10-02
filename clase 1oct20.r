@@ -1,4 +1,6 @@
 library(ggplot2)
+library(strucchange)
+
 auto<-read.table("http://www.econ.uiuc.edu/~econ536/Data/AUTO2.txt",header=T)
 
 example <- auto[auto$quarter>=1959.1 & auto$quarter<=1973.3,]
@@ -35,7 +37,7 @@ plot(A[,2], type="l")  # discutir
 example$gas2 <- example$gas^2
 example$gas3 <- example$gas^3
 example$gas4 <- example$gas^4
-reg2 <- lm(gas ~ income + price + gas2, data=example)
+reg2 <- lm(gas ~ income + price + gas2 + gas3 + gas4, data=example)
 summary(reg2)
 
 model <- gas ~ income + price
