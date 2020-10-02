@@ -3,14 +3,20 @@
 # Determinar una distribucion de la verdadera poblacion
 rm(list=ls())
 x1 <- rnorm(10000, 4,3) 
-plot(density(x1))
+plot(density(x1)
+     main="Población", 
+     xlab="Ingreso")
 
-plot(ecdf(x1))
+plot(ecdf(x1),
+    main="Población", 
+     xlab="Ingreso"))
 
 x2 <- rgamma(10000,2,1.5)
 
+#Para identificar las diferentes distribuciones se puede aplicar color en el plot
+#esto con la idea de facilitar el análisis si se llega a plasmar un trabajo de texto
 plot(density(x2))
-plot(ecdf(x2))
+plot(ecdf(x2),col="blue")
 
 # tomar muestras de la poblacion
 s <- rep(0,500)
@@ -18,7 +24,7 @@ for(i in 1:500) {
   s[i] <- mean(sample(x2, 100))
 }
 
-plot(density(s))
+plot(density(s),col="purple")
 
 # regresión, modelo
 # instalar paquete MASS (install.packages("MASS"))
@@ -31,6 +37,7 @@ X <- mvrnorm(n=1000, c(4,6), Sigma)
 plot(X[,1],X[,2])
 
 # modelo,(como modelador de los datos, conoces epsilon)
+#como dato a considerar se sabe que la media de epsilon es 0
 
 beta <- c(4,-2, 9, -3)
 c <- 15
@@ -44,6 +51,8 @@ fm1 <- y ~  X
 fm2 <- y ~  X[,1]
 plot(y, X[,1])
 
+#se puede aplicar un plot en las regresiones para 
+#observar de mejor manera la dispersión de datos 
 reg1 <- lm(fm1)
 summary(reg1)
 
