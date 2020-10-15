@@ -13,7 +13,7 @@
 	urlcolor=blue         
 }
 \usepackage{blindtext}
-%\usepackage[spanish, es-tabla]{babel}
+\usepackage[spanish, es-tabla]{babel}
 %++++++++++++++++++++++++++++++++++++++++
 
 
@@ -77,7 +77,7 @@ En otra ecuación, la numero \ref{Eq:irving} podemos ver lo contrario...
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=.8\textwidth]{pendulum.jpg}
+    \includegraphics[width=.4\textwidth]{pendulum.jpg}
     \caption{Pendulum that starts at rest in an accelerating frame. If the acceleration is not constant then the apparent vertical, and thus $\phi_0$ will change with time}
     \label{fig:samplesetup}
 \end{figure}
@@ -117,15 +117,21 @@ balanced photodiode as seen in the figure~\ref{fig:samplesetup}.
 \section{Results}
 
 In this section you will need to show your experimental results. Use tables and
-graphs when it is possible. Table~\ref{tbl:bins} is an example.
+graphs when it is possible. Table ~\ref{tbl:bins} is an example.
 
-\begin{table}[ht]
+% h ---> Aquí
+% t ---> arriba de la página
+% b ---> abajo de la pagina
+% p ---> en una pagina
+% ! ---> Me vale, haz lo posible.
+
+\begin{table}[!hbp]
 \begin{center}
 \caption{Every table needs a caption.}
 \label{tbl:bins} % spaces are big no-no withing labels
-\begin{tabular}{|cc|} 
+\begin{tabular}{cc} 
 \hline
-\multicolumn{1}{|c}{$x$ (m)} & \multicolumn{1}{c|}{$V$ (V)} \\
+\multicolumn{1}{c}{$x$ (m)} & \multicolumn{1}{l}{$V$ (V)} \\
 \hline
 0.0044151 &   0.0030871 \\
 0.0021633 &   0.0021343 \\
@@ -159,10 +165,8 @@ Here you briefly summarize your findings. Did you learn any new physics? Was eve
 \section{Future Work}
 Since you had limited time to work on this project, what questions are left outstanding? What would be your next steps? 
 
-\begin{center}
 \input{tabla.tex}
- \end{center}
- 
+
 %++++++++++++++++++++++++++++++++++++++++
 % References section will be created automatically 
 % with inclusion of "thebibliography" environment
